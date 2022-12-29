@@ -9,6 +9,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsComponent {
   constructor(private productService: ProductService) {}
+
   products: Product[] = [];
 
   deleteProduct(product: Product) {
@@ -18,9 +19,20 @@ export class ProductsComponent {
       });
     });
   }
+
+  addProduct(product: Product) {
+    this.productService.addProduct(product).subscribe((product) => {
+      this.products.push(product);
+    });
+  }
+
   ngOnInit() {
     this.productService.getProducts().subscribe((products) => {
-      this.products = products;
+      if (products.length > 0) {
+        this.products = products;
+      } else {
+        this.products = [];
+      }
     });
   }
 }

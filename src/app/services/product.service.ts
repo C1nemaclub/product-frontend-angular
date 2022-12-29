@@ -18,6 +18,9 @@ export class ProductService {
   getProducts() {
     return this.http.get<Product[]>(this.apiUrl, options);
   }
+  addProduct(product: Product) {
+    return this.http.post<Product>(this.apiUrl, product, options);
+  }
   deleteProduct(product: Product) {
     return this.http.delete<Product>(this.apiUrl + '/' + product.id);
   }
