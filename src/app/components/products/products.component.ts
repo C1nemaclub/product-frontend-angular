@@ -10,6 +10,13 @@ import { ProductService } from '../../services/product.service';
 export class ProductsComponent {
   constructor(private productService: ProductService) {}
 
+  name: string = '';
+  category: string = '';
+  description: string = '';
+  price: number = 0;
+  isEditing: boolean = false;
+  id?: number = 0;
+
   products: Product[] = [];
 
   deleteProduct(product: Product) {
@@ -21,9 +28,31 @@ export class ProductsComponent {
   }
 
   addProduct(product: Product) {
-    this.productService.addProduct(product).subscribe((product) => {
-      this.products.push(product);
-    });
+    if (this.isEditing) {
+      this.productService.editProduct(product).subscribe((items) => {
+        let found = this.products.find((item) => item.id === product.id);
+        if (found) {
+          found.name = product.name;
+          found.category = product.category;
+          found.description = product.description;
+          found.price = product.price;
+        }
+      });
+      this.isEditing = false;
+    } else {
+      this.productService.addProduct(product).subscribe((product) => {
+        this.products.push(product);
+      });
+    }
+  }
+
+  editProduct(product: Product) {
+    this.name = product.name;
+    this.category = product.category;
+    this.description = product.description;
+    this.price = product.price;
+    this.id = product.id;
+    this.isEditing = true;
   }
 
   ngOnInit() {

@@ -5,8 +5,17 @@
       *ngFor="let product of products"
       [product]="product"
       (handleDelete)="deleteProduct(product)"
+      (handleEdit)="editProduct(product)"
     >
     </app-product>
   </div>
-  <app-add-product (onAddProduct)="addProduct($event)"></app-add-product>
+  <app-add-product
+    (onAddProduct)="addProduct($event)"
+    [name]="name"
+    [description]="description"
+    [price]="price"
+    [category]="category"
+    [id]="id"
+    [isEditing]="isEditing"
+  ></app-add-product>
 </section>

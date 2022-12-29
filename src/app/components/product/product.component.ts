@@ -9,11 +9,18 @@ import { Product } from '../../Product';
 export class ProductComponent {
   buttonText = 'Delete';
   buttonColor = 'red';
+  editColor = 'dodgerblue';
+  editText = 'Edit';
   @Output() handleDelete = new EventEmitter();
+  @Output() handleEdit = new EventEmitter();
   @Input() product: any;
 
   handleClick(product: Product) {
     this.handleDelete.emit(product);
+  }
+
+  handleEditClick(product: Product) {
+    this.handleEdit.emit(product);
   }
 
   ngOnInit() {}

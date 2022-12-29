@@ -1,5 +1,12 @@
 <div class="product-card">
-  <h3 class="name">{{ product.name }}</h3>
+  <div class="top-row">
+    <h3 class="name">{{ product.name }}</h3>
+    <app-button
+      [text]="editText"
+      [color]="editColor"
+      (click)="handleEditClick(product)"
+    ></app-button>
+  </div>
   <p class="description">{{ product.description }}</p>
   <p class="category">{{ product.category }}</p>
   <div class="bottom-row">

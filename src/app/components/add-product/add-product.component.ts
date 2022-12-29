@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Product } from '../../Product';
 
 @Component({
@@ -9,12 +9,22 @@ import { Product } from '../../Product';
 export class AddProductComponent {
   buttonColor = 'green';
   buttonText = 'Add Product';
-  name: string = '';
-  description: string = '';
-  category: string = '';
-  price: number = 0;
+
+  @Input() name: string = '';
+  @Input() description: string = '';
+  @Input() category: string = '';
+  @Input() price: number = 0;
+  @Input() id?: number = 0;
+  @Input() isEditing: boolean = false;
 
   @Output() onAddProduct = new EventEmitter();
+
+  ngOnInit() {}
+  ngOnChanges() {
+    this.isEditing
+      ? (this.buttonText = 'Edit Product')
+      : (this.buttonText = 'Add Product');
+  }
 
   onSubmit() {
     const newTask: Product = {
@@ -23,6 +33,10 @@ export class AddProductComponent {
       category: this.category,
       price: this.price,
     };
+    if (this.isEditing) {
+      newTask.id = this.id;
+    }
+
     if (newTask) {
       this.onAddProduct.emit(newTask);
     }

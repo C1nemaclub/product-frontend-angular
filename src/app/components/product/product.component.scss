@@ -1,9 +1,16 @@
 .product-card {
-  width: clamp(200px, 100%, 250px);
+  width: 250px;
   padding: 0.8em;
   border: 1px solid #ccc;
   border-radius: 6px;
   min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+  }
   .name {
     position: relative;
     padding-bottom: 0.2em;
