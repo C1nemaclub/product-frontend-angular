@@ -1,0 +1,16 @@
+nav {
+  width: 100%;
+  box-shadow: 0px 5px 10px 0px #ccc;
+  margin-bottom: 1rem;
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 1.5em;
+    li a {
+      font-size: 1.5rem;
+      color: #363636;
+    }
+  }
+}

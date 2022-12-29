@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../Product';
 
-const apiUrl = 'http://localhost:4000/api/v1/products';
-
 const options = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -14,9 +12,13 @@ const options = {
   providedIn: 'root',
 })
 export class ProductService {
+  apiUrl = 'http://localhost:4000/api/v1/products';
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get<Product[]>(apiUrl, options);
+    return this.http.get<Product[]>(this.apiUrl, options);
+  }
+  deleteProduct(product: Product) {
+    return this.http.delete<Product>(this.apiUrl + '/' + product.id);
   }
 }

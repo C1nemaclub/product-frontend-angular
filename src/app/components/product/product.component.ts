@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../Product';
 
 @Component({
@@ -7,8 +7,14 @@ import { Product } from '../../Product';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent {
+  buttonText = 'Delete';
+  buttonColor = 'red';
+  @Output() handleDelete = new EventEmitter();
   @Input() product: any;
-  ngOnInit() {
-    console.log(this.product);
+
+  handleClick(product: Product) {
+    this.handleDelete.emit(product);
   }
+
+  ngOnInit() {}
 }

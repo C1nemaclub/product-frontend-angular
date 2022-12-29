@@ -1,1 +1,7 @@
-<p (click)="handleClick()">header works! {{ item }}</p>
+<nav>
+  <ul>
+    <li *ngFor="let link of links">
+      <a href="{{ link.link }}">{{ link.label }}</a>
+    </li>
+  </ul>
+</nav>

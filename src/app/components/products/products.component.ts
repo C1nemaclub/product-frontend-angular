@@ -11,6 +11,13 @@ export class ProductsComponent {
   constructor(private productService: ProductService) {}
   products: Product[] = [];
 
+  deleteProduct(product: Product) {
+    this.productService.deleteProduct(product).subscribe(() => {
+      this.products = this.products.filter((item) => {
+        return item.id !== product.id;
+      });
+    });
+  }
   ngOnInit() {
     this.productService.getProducts().subscribe((products) => {
       this.products = products;

@@ -1,0 +1,12 @@
+.products-section {
+  width: 80%;
+  margin: 0 auto;
+}
+.product-grid {
+  margin-top: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  place-items: center;
+}

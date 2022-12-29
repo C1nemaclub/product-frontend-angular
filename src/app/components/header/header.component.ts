@@ -7,15 +7,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() item = '';
-
-  @Output() onClick = new EventEmitter();
-
-  handleClick() {
-    this.onClick.emit();
-  }
-
-  constructor(private http: HttpClient) {}
+  links: any = [
+    {
+      label: 'Home',
+      link: '/',
+    },
+    {
+      label: 'Contact',
+      link: '/contact',
+    },
+    {
+      label: 'About',
+      link: '/about',
+    },
+  ];
 
   ngOnInit() {}
 }
